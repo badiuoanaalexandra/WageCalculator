@@ -1,0 +1,80 @@
+$button-size : 1.9rem; 
+$transition: .3s; // increase this to see the transformations in slow-motion
+ 
+.lines-button {
+  display: inline-block;
+  padding: $button-size/2 $button-size/4;
+  transition: .3s;
+  cursor: pointer;
+  user-select: none;
+  border-radius: $button-size/7;
+  opacity: 1;
+  height:2.2em;
+
+  &:active {
+    transition: 0;
+    background: transparent;
+  }
+}
+
+@mixin line {
+  display: inline-block;
+  width: $button-size;
+  height: $button-size/6;
+  border-radius: $button-size/14; 
+  transition: $transition;
+}
+
+.lines {
+   
+  //create middle line
+  @include line;
+  background: $primary;
+  position: relative; 
+ 
+  /*create the upper and lower lines as pseudo-elements of the middle line*/
+  &:before, &:after {
+    background: $primary;
+   @include line;
+    position: absolute;
+      left:0;
+    content: '';
+    transform-origin: $button-size/14 center;
+  }
+   opacity: 1;
+     
+    &:before { top: $button-size/3.5; }
+    &:after { top: -$button-size/3.5; }
+}
+
+.lines.light{
+    background: $base;
+     &:before, &:after {
+          background: $base;
+         }
+}
+
+.lines-button:hover {
+ 
+}
+
+.lines-button.x.close .lines{
+ 
+    /*hide the middle line*/
+    background: transparent;
+ 
+    /*overlay the lines by setting both their top values to 0*/
+    &:before, &:after{
+      transform-origin: 50% 50%;
+      top:0;
+      width: $button-size;
+    }
+ 
+    // rotate the lines to form the x shape
+    &:before{
+      transform: rotate3d(0,0,1,45deg); 
+    }
+    &:after{
+      transform: rotate3d(0,0,1,-45deg); 
+    }
+}

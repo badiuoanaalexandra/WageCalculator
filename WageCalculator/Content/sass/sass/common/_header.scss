@@ -1,0 +1,214 @@
+#header {
+    position: fixed;
+    width: 100%;
+    z-index:4;
+}
+
+header {
+    padding: 1em 10px;
+    background-color: $header-bg-color;
+    overflow: auto;
+    width: 100%;
+    border-bottom: 1px solid $divider;
+    color: $header-color;
+    height:4.15em;
+    overflow:hidden;
+
+    .button {
+        webkit-box-shadow: 0 3px 7px $button-shadow;
+        -moz-box-shadow: 0 3px 7px $button-shadow;
+        box-shadow: 0 3px 7px $button-shadow;
+    }
+
+    a {
+        color: $header-color;
+        font-weight:400;
+    }
+
+    a:not(.button){
+        font-size:0.9em;
+    }
+
+    .grid {
+        overflow: visible;
+    }
+
+    > div {
+
+        .logo {
+            @include breakpoint($desktop) {
+                @include span(2.5 of 12 at 1 isolate);
+            }
+
+            @include breakpoint($desktop-max) {
+                @include span(1.5 of 12 at 1 isolate);
+            }
+
+            a.logo-link {
+                display: inline-block;
+                top: 1em;
+                position: absolute;
+
+                img {
+                    height: 2.3em;
+                }
+            }
+        }
+
+        .links {
+            @include breakpoint($desktop) {
+                @include span(7 of 12 at 3.5 isolate);
+            }
+
+            @include breakpoint($desktop-max) {
+                @include breakpoint($tab-medium) {
+                    @include span(8 of 12 at 2.5 isolate);
+                }
+            }
+
+            @include breakpoint($tab-medium-max) {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 4.6em;
+                left: 0;
+                background-color: $header-bg-color;
+                overflow-x: hidden;
+                transition: 0.5s;
+            }
+
+            text-align: center;
+            font-size: 0.9em;
+
+            a {
+                @include breakpoint($desktop) {
+                    margin: 0 2em;
+                }
+
+                @include breakpoint($desktop-max) {
+                    @include breakpoint($tab-medium) {
+                        margin: 0 1em;
+                    }
+                }
+
+                @include breakpoint($tab-medium-max) {
+                    display: block;
+                    border-radius: 0;
+                    box-shadow: none;
+                    text-align: left;
+                    height: 5em;
+                    line-height: 5em;
+                    padding: 0 1.3em;
+                    width:12.7em;
+                }
+
+                span{
+                    font-size:1.2em;
+                }
+            }
+
+            @include breakpoint($tab-medium) {
+                a:first-child {
+                    margin-left: 0;
+                }
+
+                a:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .links.open {
+            @include breakpoint($tab-medium-max) {
+                width: 11.5em;
+                border-right:1px solid $divider;
+            }
+        }
+
+        .language-login {
+            @include breakpoint($tab-medium) {
+                @include span(2.5 of 12 at 10.5 isolate);
+            }
+
+            @include breakpoint($tab-medium-max) {
+                float: right;
+                width: 55%;
+            }
+
+            line-height: 2.4em;
+            font-weight: 400;
+            text-align: right;
+            font-size: 0.9em;
+
+            .language {
+                @include breakpoint($desktop) {
+                    @include span(1.4 of 2.5 first isolate);
+                }
+
+                @include breakpoint($desktop-max) {
+                    @include breakpoint($tab-medium) {
+                        @include span(1.6 of 2.5 first isolate);
+                    }
+                }
+
+                @include breakpoint($tab-medium-max) {
+                    float: left;
+                    width: 60%;
+                }
+
+                a.active {
+                    font-weight: 700;
+                }
+            }
+
+            .login {
+                @include breakpoint($desktop) {
+                    @include span(1.1 of 2.5 last isolate);
+                }
+
+                @include breakpoint($desktop-max) {
+                    @include breakpoint($tab-medium) {
+                        @include span(0.9 of 2.5 last isolate);
+                    }
+                }
+
+                @include breakpoint($tab-medium-max) {
+                    float: right;
+                    width: 40%;
+                }
+            }
+        }
+
+
+        .mobile-menu {
+            @include breakpoint($tab-medium) {
+                display: none;
+            }
+
+            @include breakpoint($tab-medium-max) {
+                position: absolute;
+                display: inline-block;
+                left:4em;
+                padding:0.5em;
+            }
+
+
+            img {
+                vertical-align: middle;
+                height:1.5em;
+            }
+        }
+    }
+}
+
+
+#main {
+    transition: margin-left .5s;
+}
+
+#main.nav-open {
+    @include breakpoint($tab-medium-max) {
+        margin-left: 10.35em;
+    }
+}

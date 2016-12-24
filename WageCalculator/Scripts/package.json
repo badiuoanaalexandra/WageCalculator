@@ -1,0 +1,16 @@
+{
+  "name": "wagecalculator",
+  "version": "1.0.0",
+  "description": "Solinor wage calculator",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oana Badiu",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^18.0.0",
+    "jest": "^18.0.0",
+    "react-test-renderer": "^15.4.1"
+  }
+}

@@ -1,0 +1,44 @@
+$container:1400px;
+$container-max:max-width ($container - 1);
+
+$container-medium:2200px;
+$container-medium-max:max-width ($container-medium - 1);
+
+$container-big:2700px;
+$container-big-max:max-width ($container-big - 1);
+
+$container-desktop:1400px;
+$container-desktop-max:max-width ($container-big - 1);
+
+$desktop-big:3600px;
+$desktop-big-max: max-width ($desktop-big - 1);
+
+$desktop-medium:2800px;
+$desktop-medium-max: max-width ($desktop-medium - 1);
+
+$desktop-medium-2:2300px;
+$desktop-medium-2-max: max-width ($desktop-medium-2 - 1);
+
+$desktop-normal:1930px;
+$desktop-normal-max: max-width ($desktop-normal - 1);
+
+$desktop:1400px;
+$desktop-max: max-width ($desktop - 1);
+
+$desktop-small:960px;
+$desktop-small-max: max-width ($desktop-small - 1);
+
+$tab-wide: 800px;
+$tab-wide-max: max-width ($tab-wide - 1);
+
+$tab-medium: 700px;
+$tab-medium-max: max-width ($tab-medium - 1);
+
+$tab: 600px;
+$tab-max: max-width ($tab - 1);
+
+$phone: 450px;
+$phone-max: max-width ($phone - 1);
+
+$phone-small: 350px;
+$phone-small-max: max-width ($phone-small - 1);

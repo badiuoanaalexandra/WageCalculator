@@ -1,0 +1,39 @@
+@import "compass";
+@import "susy";
+@import "breakpoint";
+
+$susy: ( global-box-sizing: border-box, gutters: 5px/75px, columns:12, gutter-position:outside);
+@include border-box-sizing;
+
+.grid {
+    @include breakpoint($desktop-big) {
+        @include container($container-big);
+    }
+
+    @include breakpoint($desktop-big-max) {
+        @include breakpoint($desktop-medium) {
+            @include container($container-medium);
+        }
+    }
+
+     @include breakpoint($desktop-medium-max) {
+        @include breakpoint($desktop-normal) {
+            @include container($container);
+        }
+    }
+
+      @include breakpoint($desktop) {
+        @include breakpoint($desktop-normal-max) {
+            @include container($container-desktop);
+        }
+    }
+
+    @include breakpoint($desktop-small) {
+        @include breakpoint($desktop-max) {
+            @include container($desktop-small);
+        }
+    }
+
+    @include clearfix;
+}
+

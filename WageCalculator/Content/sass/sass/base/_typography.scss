@@ -1,0 +1,91 @@
+@import "compass";
+@import "breakpoint"; 
+@import "susy";
+
+body{
+   -webkit-overflow-scrolling: touch;
+   color:$base;
+   font-weight:300;
+   background-color:$primary;
+ 
+       @include breakpoint($desktop-big) {
+        font-size:1.8em;
+    }
+
+    @include breakpoint($desktop-big-max) {
+        @include breakpoint($desktop-medium) {
+            font-size:1.5em;
+        }
+    }
+
+      @include breakpoint($desktop-medium-max) {
+        @include breakpoint($desktop-medium-2) {
+            font-size:1.1em;
+        }
+    }
+
+     @include breakpoint($desktop-medium-2-max) {
+        @include breakpoint($desktop-normal) {
+          font-size:1.05em;
+        }
+    }
+
+    @include breakpoint($tab) {
+        @include breakpoint($desktop-normal-max) {
+            font-size:0.95em;
+        }
+    }
+
+     @include breakpoint($tab-max) {
+          font-size:0.85em;
+         }
+
+}
+
+body, input, button, select, option, textarea {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+  text-shadow: rgba(0, 0, 0, 0.01) 0 0 1px;
+}
+
+.container{
+    line-height:150%;
+}
+
+a{
+    cursor:pointer;
+    color:$primary;
+    text-decoration:none;
+}
+
+h1,h2{
+      @include breakpoint($tab){
+                font-size:2.4em;
+    margin:0.5em 0 1em 0;
+    }
+
+       @include breakpoint($tab-max){
+                   font-size:2.1em;
+    margin:0.4em 0 0.8em 0;
+    }
+
+    line-height:100%;
+}
+
+h3{
+    font-size:1.3em;
+
+       @include breakpoint($tab){
+        margin-bottom:1.5em;
+    }
+
+       @include breakpoint($tab-max){
+           margin-bottom:1em;
+    }
+}
+
+h4{
+    font-size:1.3em;
+}
