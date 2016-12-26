@@ -25,7 +25,7 @@ namespace WageCalculator.ViewModels
                 var dailyWage = new DailyWage(workingDay, wagePricing);
                 TotalMonthlyWage += dailyWage.TotalWage;
                 TotalEveningCompensation += dailyWage.EveningCompensation;
-                TotalOvertimeCompensation += dailyWage.OvertimeWage;
+                TotalOvertimeCompensation += dailyWage.OvertimeCompensation;
                 TotalEveningHours += dailyWage.EveningHours;
                 TotalWorktimeHours += dailyWage.WorkingHours;
                 TotalOvertimeHours += dailyWage.OvertimeHours;

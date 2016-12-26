@@ -1,0 +1,14 @@
+.background-image-text{
+    text-align:right;
+    > div{
+        color:rgba($primary, 0.1);
+        font-family:Satisfy, cursive;
+        font-size:3em;
+        margin-top:2.5em;
+        line-height:90%;
+        padding:10px;
+        -ms-transform:rotate(-10deg);
+        -webkit-transform:rotate(-10deg);
+        transform:rotate(-10deg);
+    }
+}

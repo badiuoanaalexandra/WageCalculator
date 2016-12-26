@@ -82,7 +82,7 @@ namespace WageCalculator.Models
                     EndTime = date.AddHours(endHour).AddMinutes(endMinute)
                 };
 
-                workingDay.DailyHours.Add(dailyHour);
+                workingDay.WorkingShifts.Add(dailyHour);
             }
             // goes over midnight -> calculated in the same day
             else
@@ -93,7 +93,7 @@ namespace WageCalculator.Models
                     EndTime = date.AddDays(1).AddHours(endHour).AddMinutes(endMinute)
                 };
 
-                workingDay.DailyHours.Add(dailyHour);
+                workingDay.WorkingShifts.Add(dailyHour);
             }
         }
 

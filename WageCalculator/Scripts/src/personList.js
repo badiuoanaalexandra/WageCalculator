@@ -10,7 +10,11 @@ render: function() {
     });
     return (
         <div className="person-list">
-          {persons}
+            <div className="table-titles">
+                <div>Name</div>
+                <div>Total wage / March 2014</div>
+            </div>
+        {persons}
         </div>
     );
 }

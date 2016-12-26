@@ -16,16 +16,20 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
+    @Styles.Render("~/bundles/styles")
 </head>
 <body>
-<div class="container body-content">  
-        @RenderBody()
-    <hr/>
-    <footer>
+<div class="bg-image">
+    <img alt="bg image" src="../../Content/Images/fireworks.jpg"/>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    @*<hr/>*@
+    @*<footer>
         <p>&copy; @DateTime.Now.Year - Oana Badiu</p>
-    </footer>
+    </footer>*@
 </div>
 
-    @Scripts.Render("~/bundles/app")
+@Scripts.Render("~/bundles/app")
 </body>
 </html>

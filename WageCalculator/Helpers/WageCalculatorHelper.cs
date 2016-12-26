@@ -12,13 +12,7 @@ namespace WageCalculator.Helpers
         public static MonthlyWage CalculateMonthlyWage(Person person, int month, WagePricing wagePricing)
         {
             var workingDays = person.WorkingDays.Where(d => d.Date.Month == month).ToList();
-            return new MonthlyWage();
-            //foreach (var workingDay in dailyHours)
-            //{
-            //    monthlyWage.DailyWages.Add(CalculateDailyWage(workingDay));
-            //}
-            
-
+            return new MonthlyWage(workingDays, wagePricing);
         }
 
         public static WagePricing GetWagePricing()

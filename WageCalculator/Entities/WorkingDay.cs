@@ -13,12 +13,12 @@ namespace WageCalculator.Entities
     {
         public WorkingDay()
         {
-            DailyHours = new List<WorkingShift>();
+            WorkingShifts = new List<WorkingShift>();
         }
 
         public long WorkingDayId { get; set; }
         public DateTime Date { get; set; }
 
-        public List<WorkingShift> DailyHours { get; set; }
+        public List<WorkingShift> WorkingShifts { get; set; }
     }
 }

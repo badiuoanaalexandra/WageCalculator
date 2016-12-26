@@ -9,10 +9,10 @@ namespace WageCalculator.ViewModels
 {
     public class DailyWage
     {
-        public decimal TotalWage => NormalHoursWage + EveningCompensation + OvertimeWage;
+        public decimal TotalWage => NormalHoursWage + EveningCompensation + OvertimeCompensation;
         public decimal NormalHoursWage { get; set; }
         public decimal EveningCompensation { get; set; }
-        public decimal OvertimeWage { get; set; }
+        public decimal OvertimeCompensation { get; set; }
         public decimal WorkingHours { get; set; }
         public decimal EveningHours { get; set; }
         public decimal OvertimeHours { get; set; }
@@ -25,15 +25,18 @@ namespace WageCalculator.ViewModels
             WagePricing = wagePricing;
 
             CalculateNormalWage();
+            NormalHoursWage = Math.Round(NormalHoursWage, 2, MidpointRounding.AwayFromZero);
 
             CalculateEveningCompensation();
+            EveningCompensation = Math.Round(EveningCompensation, 2, MidpointRounding.AwayFromZero);
 
             CalculateOvertime();
+            OvertimeCompensation = Math.Round(OvertimeCompensation, 2, MidpointRounding.AwayFromZero);
         }
 
         private void CalculateNormalWage()
         {
-            foreach (var dailyHour in WorkingDay.DailyHours)
+            foreach (var dailyHour in WorkingDay.WorkingShifts)
             {
                 WorkingHours += Convert.ToDecimal((dailyHour.EndTime - dailyHour.StartTime).TotalHours);
             }
@@ -52,7 +55,7 @@ namespace WageCalculator.ViewModels
             var overtimeHours = OvertimeHours;
             foreach (var overtimePricing in WagePricing.OvertimePricings.OrderBy(o=> o.ApplyOrder))
             {
-                OvertimeWage += CalculatePricingOvertime(overtimePricing, ref overtimeHours);
+                OvertimeCompensation += CalculatePricingOvertime(overtimePricing, ref overtimeHours);
                 if (overtimeHours < 0)
                 {
                     return;
@@ -74,10 +77,11 @@ namespace WageCalculator.ViewModels
 
         private void CalculateEveningCompensation()
         {
-            foreach (var dailyHour in WorkingDay.DailyHours)
+            foreach (var dailyHour in WorkingDay.WorkingShifts)
             {
                 EveningCompensation += CalculateDailyHourEveningCompensation(dailyHour);
             }
+
         }
 
         private decimal CalculateDailyHourEveningCompensation(WorkingShift dailyHour)
@@ -146,9 +150,10 @@ namespace WageCalculator.ViewModels
             {
                 throw new Exception("Evening hours should never be negative!");
             }
-            EveningHours += Math.Round(Convert.ToDecimal(eveningHours), 2);
 
-            return Math.Round(Convert.ToDecimal(eveningHours) * WagePricing.EveningPricing.Compensation, 2);
+            EveningHours += Convert.ToDecimal(eveningHours);
+
+            return Convert.ToDecimal(eveningHours) * WagePricing.EveningPricing.Compensation;
         }
     }
 }

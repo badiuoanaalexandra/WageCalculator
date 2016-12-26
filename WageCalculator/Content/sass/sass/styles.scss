@@ -4,17 +4,11 @@
 @import "mixins/mixins";
 @import "base/typography";
 @import "base/layout";
-/*@import "plugins/slick";
-@import "plugins/slick-theme";*/
 @import "common/common";
 @import "common/header";
-/*@import "public/slider";*/
-@import "public/common";
 @import "common/footer";
-@import "plugins/react-select";
-@import "public/register";
-@import "plugins/inputfile";
-@import "public/front-banner";
-@import "common/mobile-nav";
-
+@import "common/person";
+@import "common/monthly-wage";
+@import "common/daily-wage";
+@import "common/background-image-text";
 

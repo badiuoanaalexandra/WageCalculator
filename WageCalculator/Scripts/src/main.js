@@ -17,7 +17,7 @@ processFile: function() {
     var xhr = new XMLHttpRequest();
     var fd = new FormData();
     fd.append("file", this.refs.file.refs.input.files[0]);
-    xhr.open("POST", "/File/Process/", true);
+    xhr.open("POST", "/WageCalculator/ProcessCsvFile/", true);
     xhr.send(fd);
     xhr.addEventListener("load", function(event) {
         var data = JSON.parse(event.target.response);
@@ -27,9 +27,14 @@ processFile: function() {
 render: function () {
     return (
     <div id="main">
-        <div>Hello there and welcome to the wage calculator!</div>
+        <h1>Hello there and welcome to the wage calculator!</h1>
         <div><FileInput ref="file" id="fileinput" onChange={this.processFile}/></div>
         <PersonList data={this.state.data} />
+        <div className="background-image-text">
+            <div>
+                Happy New Year!
+            </div>
+        </div>
     </div>
 );
 }

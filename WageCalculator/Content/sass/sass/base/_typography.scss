@@ -4,10 +4,10 @@
 
 body{
    -webkit-overflow-scrolling: touch;
-   color:$base;
-   font-weight:300;
-   background-color:$primary;
- 
+   color:$primary;
+   font-weight:600;
+   background-color:$background;
+
        @include breakpoint($desktop-big) {
         font-size:1.8em;
     }
@@ -72,6 +72,7 @@ h1,h2{
     }
 
     line-height:100%;
+    text-align:center;
 }
 
 h3{

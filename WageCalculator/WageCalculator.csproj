@@ -295,6 +295,7 @@
     <Compile Include="ViewModels\MonthlyWage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\fireworks.jpg" />
     <Content Include="Content\stylesheets\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -312,16 +313,23 @@
     <Content Include="Content\sass\sass\common\_common.scss" />
     <Content Include="Content\sass\sass\common\_footer.scss" />
     <Content Include="Content\sass\sass\common\_header.scss" />
-    <Content Include="Content\sass\sass\common\_mobile-nav.scss" />
     <Content Include="Content\sass\sass\mixins\_mixins.scss" />
     <Content Include="Content\sass\sass\styles.scss" />
     <Content Include="Content\sass\sass\variables\_color-vars.scss" />
     <Content Include="Content\sass\sass\variables\_layout-vars.scss" />
+    <Content Include="Content\sass\sass\common\_person.scss" />
+    <Content Include="Content\sass\sass\common\_monthly-wage.scss" />
+    <Content Include="Content\sass\sass\common\_daily-wage.scss" />
+    <Content Include="Content\sass\sass\common\_background-image-text.scss" />
     <None Include="Properties\PublishProfiles\WageCalculator - Web Deploy.pubxml" />
     <Content Include="Scripts\dist\app.bundle.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jQuery\jquery-ui.min.js" />
     <Content Include="Scripts\src\app.js" />
+    <Content Include="Scripts\src\workingShift.js" />
+    <Content Include="Scripts\src\dailyWage.js" />
+    <Content Include="Scripts\src\monthlyWage.js" />
+    <Content Include="Scripts\src\dailyWageList.js" />
     <Content Include="Scripts\src\personList.js" />
     <Content Include="Scripts\src\person.js" />
     <Content Include="Scripts\src\fileInput.js" />

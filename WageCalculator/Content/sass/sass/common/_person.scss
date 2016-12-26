@@ -1,0 +1,30 @@
+.person-list {
+    margin-top: 2em;
+    background: rgba($table-background, 0.7);
+    border-radius: 1em;
+    padding: 1em 2em;
+    color: $text;
+
+    .person:last-child {
+        border: none;
+    }
+
+    .person:nth-child(2) {
+        border-top: 1px solid $border;
+    }
+
+    .person {
+        border-bottom: 1px solid $border;
+
+        .table {
+            > div:first-child {
+                font-weight: 800;
+                font-size:1.1em;
+            }
+
+            > div {
+                width: 15em;
+            }
+        }
+    }
+}

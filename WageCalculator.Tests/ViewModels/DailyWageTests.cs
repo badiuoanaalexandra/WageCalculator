@@ -25,7 +25,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -53,7 +53,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -91,7 +91,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -120,7 +120,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -149,7 +149,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -165,7 +165,7 @@ namespace WageCalculator.Tests.ViewModels
             Assert.AreEqual(8 * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
             Assert.AreEqual(8, dailyWage.EveningHours);
             Assert.AreEqual(1, dailyWage.OvertimeHours);
-            Assert.AreEqual(1*wagePricing.BasicHourlyWage*wagePricing.OvertimePricings[0].Percentage, dailyWage.OvertimeWage);
+            Assert.AreEqual(1*wagePricing.BasicHourlyWage*wagePricing.OvertimePricings[0].Percentage, dailyWage.OvertimeCompensation);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                     new WorkingShift
                     {
@@ -194,7 +194,7 @@ namespace WageCalculator.Tests.ViewModels
             Assert.AreEqual(14, dailyWage.WorkingHours);
             Assert.AreEqual(12 * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
             Assert.AreEqual(12, dailyWage.EveningHours);
-            Assert.AreEqual(1.875M + 3.75M + 7.5M, dailyWage.OvertimeWage);
+            Assert.AreEqual(1.875M + 3.75M + 7.5M, dailyWage.OvertimeCompensation);
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace WageCalculator.Tests.ViewModels
             var workingDay = new WorkingDay
             {
                 Date = date,
-                DailyHours = new List<WorkingShift>()
+                WorkingShifts = new List<WorkingShift>()
                 {
                      new WorkingShift
                     {
@@ -254,7 +254,7 @@ namespace WageCalculator.Tests.ViewModels
             Assert.AreEqual((1+3 + 2 + 3 + 0.5M + 5), dailyWage.WorkingHours);
             Assert.AreEqual(Math.Round(9.5M * wagePricing.EveningPricing.Compensation, 2, MidpointRounding.AwayFromZero), dailyWage.EveningCompensation);
             Assert.AreEqual(9.5M, dailyWage.EveningHours);
-            Assert.AreEqual(1.875M + 3.75M + 9.375M, dailyWage.OvertimeWage);
+            Assert.AreEqual(1.875M + 3.75M + 9.375M, dailyWage.OvertimeCompensation);
             Assert.AreEqual(6.5M, dailyWage.OvertimeHours);
         }
     }
