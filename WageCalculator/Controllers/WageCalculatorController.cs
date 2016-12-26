@@ -17,9 +17,17 @@ namespace WageCalculator.Controllers
         [HttpPost]
         public async Task<JsonResult> ProcessCsvFile(HttpPostedFileBase file)
         {
-            var wageCalculatorModel = new WageCalculatorModel();
-            var personDatas = await wageCalculatorModel.ProcessFile(file);
-            return Json(personDatas);
+            try
+            {
+                var wageCalculatorModel = new WageCalculatorModel();
+                var personDatas = await wageCalculatorModel.ProcessFile(file);
+                return Json(personDatas);
+            }
+            catch(Exception ex)
+            {
+                return Json(ex.Message);
+            }
+
         }
     }
 }

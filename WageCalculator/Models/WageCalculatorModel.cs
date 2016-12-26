@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace WageCalculator.Models
                 _persons.Add(person);
             }
 
-            var date = DateTime.Parse(row["Date"]);
+            var date = DateTime.Parse(row["Date"], new CultureInfo("fi"));
             var timeStart = row["Start"].Split(':');
             var startHour = int.Parse(timeStart[0]);
             var startMinute = int.Parse(timeStart[1]);
