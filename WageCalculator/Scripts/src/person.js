@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import IntervalWage from "./intervalWage";
 
 export default React.createClass({
+    componentDidUpdate:function() {
+        this.hideIntervalWage();
+    },
     showIntervalWage:function() {
         if (this.refs.intervalWage.innerHTML === "") {
             ReactDOM.render(

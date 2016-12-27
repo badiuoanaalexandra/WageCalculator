@@ -14,6 +14,6 @@ namespace WageCalculator.ViewModels
     {
         public List<int> Years { get; set; }
         public List<int> Months { get; set; }
-        public Dictionary<long, string> PersonNames { get; set; }
+        public List<PersonListItem> PersonListItems { get; set; }
     }
 }

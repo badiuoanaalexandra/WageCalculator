@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import DailyWageList from "./dailyWageList";
 
 export default React.createClass({
+    componentDidUpdate:function() {
+        this.hideDailyWages();
+    },
     showDailyWages:function() {
         if (this.refs.dailyWages.innerHTML === "") {
         ReactDOM.render(
@@ -31,7 +34,7 @@ export default React.createClass({
                 </div>
                 <div className="table">
                     <div>
-                        {this.props.intervalWage.TotalMonthlyWage} $<br/>{this.props.intervalWage.TotalWorktimeHours} h
+                        {this.props.intervalWage.TotalWage} $<br/>{this.props.intervalWage.TotalWorktimeHours} h
                     </div>
                     <div>
                         {this.props.intervalWage.TotalEveningCompensation} $<br/>{this.props.intervalWage.TotalEveningHours} h

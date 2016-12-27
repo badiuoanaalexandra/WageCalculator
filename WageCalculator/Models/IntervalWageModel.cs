@@ -33,7 +33,10 @@ namespace WageCalculator.Models
         /// <returns>IntervalWage object</returns>
         public IntervalWage CalculateIntervalWage()
         {
-            var intervalWage = new IntervalWage();
+            var intervalWage = new IntervalWage
+            {
+                DailyWages = new List<DailyWage>()
+            };
             foreach (var workingDay in WorkingDays)
             {
                 var dailyWage = new DailyWageModel(workingDay, WagePricing).CalculateDailyWage();

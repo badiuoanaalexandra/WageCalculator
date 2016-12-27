@@ -9,6 +9,8 @@ namespace WageCalculator.Helpers
 {
     public static class WageCalculatorHelper
     {
+        public static List<Person> Persons { get; set; }
+
         public static WagePricing GetWagePricing()
         {
             return new WagePricing

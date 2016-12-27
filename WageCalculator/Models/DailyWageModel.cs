@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using WageCalculator.Entities;
 using WageCalculator.ViewModels;
@@ -69,7 +70,7 @@ namespace WageCalculator.Models
                 wage.Hours += Convert.ToDecimal((dailyHour.EndTime - dailyHour.StartTime).TotalHours);
             }
 
-            wage.Amount = wage.Hours * WagePricing.BasicHourlyWage;
+            wage.Amount = wage.Hours*WagePricing.BasicHourlyWage;
             return wage;
         }
 

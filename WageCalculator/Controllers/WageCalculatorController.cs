@@ -20,7 +20,7 @@ namespace WageCalculator.Controllers
         /// <summary>
         /// For this Demo WageCalculatorModel will hold the data from the csv file
         /// </summary>
-        WageCalculatorModel _wageCalculatorModel = new WageCalculatorModel();
+        readonly WageCalculatorModel _wageCalculatorModel = new WageCalculatorModel();
 
         /// <summary>
         /// Processes file uploaded by user
@@ -28,12 +28,12 @@ namespace WageCalculator.Controllers
         /// <param name="file">HttpPostedFileBase file</param>
         /// <returns>JsonResult</returns>
         [HttpPost]
-        public async Task<JsonResult> ProcessCsvFile(HttpPostedFileBase file)
+        public JsonResult ProcessCsvFile(HttpPostedFileBase file)
         {
             try
             {
-                var personDatas = await _wageCalculatorModel.ProcessCsvFile(file);
-                return Json(personDatas);
+                var filterData =  _wageCalculatorModel.ProcessCsvFile(file);
+                return Json(filterData);
             }
             catch(Exception ex)
             {

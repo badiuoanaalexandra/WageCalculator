@@ -1,43 +1,83 @@
-.bg-image{
-    position:absolute;
-    width:100%;
-    z-index:1;
-    height:100%;
+.button{
+    display:inline-block;
+    padding:0 2em;
+    background:$button-gradient-2;
+    background: -webkit-linear-gradient(180deg, $button-gradient-1, $button-gradient-2);
+    background: -o-linear-gradient(180deg, $button-gradient-1, $button-gradient-2);
+    background: linear-gradient(180deg, $button-gradient-1, $button-gradient-2);
+    color:$primary;
+    height:2.5em;
+    line-height:2.5em;
+}
+.bg-image {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
     /*overflow:hidden;*/
-
-    img{
-        width:100%;
+    img {
+        width: 100%;
     }
 }
-.container{
-    padding-top:2em;
-    position:relative;
-    z-index:2;
+
+.container {
+    padding-top: 2em;
+    position: relative;
+    z-index: 2;
 }
 
-.table{
-  display:table;
-     > div:first-child {
-                text-align: left;
-            }
-     > div {
-                display: table-cell;
-                vertical-align: middle;
-                padding: 1em;
-                text-align: right;
-            }
+.table {
+    width:100%;
+
+    > div:first-child {
+        text-align: left;
+    }
+
+    > div {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 1em;
+        text-align: right;
+        width:20%;
+    }
 }
 
 .table-titles {
-        > div {
-            padding: 1em;
-            width: 15em;
-            display: table-cell;
-             text-align: right;
-        }
+    width:100%;
+    > div {
+        padding: 1em;
+        width: 20%;
+        display: inline-block;
+        text-align: right;
+    }
 
-     > div:first-child {
-                text-align: left;
-            }
+    > div:first-child {
+        text-align: left;
+    }
+}
 
+.file-upload {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right:2em;
+}
+
+.filter {
+    display: inline-block;
+    vertical-align: middle;
+
+    > div {
+        display: inline-block;
+        vertical-align: bottom;
+        padding-right:2em;
+    }
+}
+
+select{
+    margin-top:0.5em !important;
+    width:10em;
+    height:2.5em;
+    padding:0 0.5em;
+    font-weight:600;
+    color:$text;
 }

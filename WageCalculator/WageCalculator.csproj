@@ -286,6 +286,7 @@
     <Compile Include="Models\IntervalWageModel.cs" />
     <Compile Include="Models\DailyWageModel.cs" />
     <Compile Include="Models\WageCalculatorModel.cs" />
+    <Compile Include="ViewModels\PersonListItem.cs" />
     <Compile Include="ViewModels\FilterData.cs" />
     <Compile Include="ViewModels\PersonData.cs" />
     <Compile Include="ViewModels\DailyWage.cs" />
@@ -299,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\fireworks.jpg" />
+    <Content Include="Content\Images\inputfile.svg" />
     <Content Include="Content\stylesheets\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -321,6 +323,8 @@
     <Content Include="Content\sass\sass\common\_monthly-wage.scss" />
     <Content Include="Content\sass\sass\common\_daily-wage.scss" />
     <Content Include="Content\sass\sass\common\_background-image-text.scss" />
+    <Content Include="ApplicationInsights.config" />
+    <Content Include="Content\sass\sass\common\_inputfile.scss" />
     <None Include="Properties\PublishProfiles\WageCalculator - Web Deploy.pubxml" />
     <Content Include="Scripts\dist\app.bundle.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.min.js" />

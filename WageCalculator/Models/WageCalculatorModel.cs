@@ -22,33 +22,33 @@ namespace WageCalculator.Models
         /// <summary>
         /// Normally these would be in a DB, but for this Demo the csv file is going to be parsed
         /// </summary>
-        private readonly List<Person> _persons = new List<Person>();
+        public List<Person> Persons => WageCalculatorHelper.Persons;
 
         /// <summary>
         /// Processes csv file uploaded
         /// </summary>
         /// <param name="file">HttpPostedFileBase file</param>
         /// <returns>FilterData</returns>
-        public async Task<FilterData> ProcessCsvFile(HttpPostedFileBase file)
+        public FilterData ProcessCsvFile(HttpPostedFileBase file)
         {
-            _persons.Clear();
+            WageCalculatorHelper.Persons = new List<Person>();
             var filterData = new FilterData
             {
                 Months = new List<int>(),
                 Years = new List<int>(),
-                PersonNames = new Dictionary<long, string>()
+                PersonListItems = new List<PersonListItem>()
             };
 
             using (var textReader = new StreamReader(file.InputStream))
             using (var reader = new CsvReader(textReader, true))
             {
-                await reader.ReadHeaderRecordAsync();
+                reader.ReadHeaderRecord();
 
                 var buffer = new DataRecord[128];
 
                 while (reader.HasMoreRecords)
                 {
-                    var read = await reader.ReadDataRecordsAsync(buffer, 0, buffer.Length);
+                    var read = reader.ReadDataRecords(buffer, 0, buffer.Length);
 
                     for (var i = 0; i < read; ++i)
                     {
@@ -68,7 +68,7 @@ namespace WageCalculator.Models
         private void ProcessCsvFileRow(DataRecord row, FilterData filterData)
         {
             var personId = int.Parse(row["Person ID"].Trim());
-            var person = _persons.FirstOrDefault(p => p.PersonID == personId);
+            var person = WageCalculatorHelper.Persons.FirstOrDefault(p => p.PersonID == personId);
             if (person == null)
             {
                 person = new Person
@@ -77,8 +77,12 @@ namespace WageCalculator.Models
                     PersonName = row["Person Name"]
                 };
 
-                _persons.Add(person);
-                filterData.PersonNames.Add(person.PersonID, person.PersonName);
+                WageCalculatorHelper.Persons.Add(person);
+                filterData.PersonListItems.Add(new PersonListItem
+                {
+                    PersonID = person.PersonID,
+                    PersonName = person.PersonName
+                });
             }
 
             var date = DateTime.Parse(row["Date"], new CultureInfo("fi"));
@@ -139,10 +143,10 @@ namespace WageCalculator.Models
         {
             var personDatas = new List<PersonData>();
             var wagePricing = WageCalculatorHelper.GetWagePricing();
-            var persons = _persons;
+            var persons = Persons;
             if (personId > 0)
             {
-                persons = _persons.Where(o => o.PersonID == personId).ToList();
+                persons = Persons.Where(o => o.PersonID == personId).ToList();
             }
 
             foreach (var person in persons)
