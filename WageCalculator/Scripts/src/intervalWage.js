@@ -6,7 +6,7 @@ export default React.createClass({
     showDailyWages:function() {
         if (this.refs.dailyWages.innerHTML === "") {
         ReactDOM.render(
-          <DailyWageList dailyWages={this.props.monthlyWage.DailyWages} />,
+          <DailyWageList dailyWages={this.props.intervalWage.DailyWages} />,
           this.refs.dailyWages
          );
         } else {
@@ -31,13 +31,13 @@ export default React.createClass({
                 </div>
                 <div className="table">
                     <div>
-                        {this.props.monthlyWage.TotalMonthlyWage} $<br/>{this.props.monthlyWage.TotalWorktimeHours} h
+                        {this.props.intervalWage.TotalMonthlyWage} $<br/>{this.props.intervalWage.TotalWorktimeHours} h
                     </div>
                     <div>
-                        {this.props.monthlyWage.TotalEveningCompensation} $<br/>{this.props.monthlyWage.TotalEveningHours} h
+                        {this.props.intervalWage.TotalEveningCompensation} $<br/>{this.props.intervalWage.TotalEveningHours} h
                     </div>
                      <div>
-                        {this.props.monthlyWage.TotalOvertimeCompensation} $<br/>{this.props.monthlyWage.TotalOvertimeHours} h
+                        {this.props.intervalWage.TotalOvertimeCompensation} $<br/>{this.props.intervalWage.TotalOvertimeHours} h
                     </div>
                     <div>
                         <a ref="linkShowDailyWages" onClick={this.showDailyWages}>View amounts/day</a>

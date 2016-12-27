@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using KBCsv;
 using WageCalculator.Entities;
 using WageCalculator.Helpers;
@@ -12,13 +14,31 @@ using WageCalculator.ViewModels;
 
 namespace WageCalculator.Models
 {
+    /// <summary>
+    /// Handles the operation from WageCalculatorController
+    /// </summary>
     public class WageCalculatorModel
     {
+        /// <summary>
+        /// Normally these would be in a DB, but for this Demo the csv file is going to be parsed
+        /// </summary>
         private readonly List<Person> _persons = new List<Person>();
 
-        public async Task<List<PersonData>> ProcessFile(HttpPostedFileBase file)
+        /// <summary>
+        /// Processes csv file uploaded
+        /// </summary>
+        /// <param name="file">HttpPostedFileBase file</param>
+        /// <returns>FilterData</returns>
+        public async Task<FilterData> ProcessCsvFile(HttpPostedFileBase file)
         {
             _persons.Clear();
+            var filterData = new FilterData
+            {
+                Months = new List<int>(),
+                Years = new List<int>(),
+                PersonNames = new Dictionary<long, string>()
+            };
+
             using (var textReader = new StreamReader(file.InputStream))
             using (var reader = new CsvReader(textReader, true))
             {
@@ -32,15 +52,20 @@ namespace WageCalculator.Models
 
                     for (var i = 0; i < read; ++i)
                     {
-                        ProcessCsvFileRow(buffer[i]);
+                        ProcessCsvFileRow(buffer[i], filterData);
                     }
                 }
             }
-
-            return CalculateWages(3);
+             
+            return filterData;
         }
 
-        private void ProcessCsvFileRow(DataRecord row)
+        /// <summary>
+        /// Processes one row from the csv file. Same time the file is processed, filterdata is created for UI
+        /// </summary>
+        /// <param name="row">DataRecord</param>
+        /// <param name="filterData">FilterData object</param>
+        private void ProcessCsvFileRow(DataRecord row, FilterData filterData)
         {
             var personId = int.Parse(row["Person ID"].Trim());
             var person = _persons.FirstOrDefault(p => p.PersonID == personId);
@@ -53,6 +78,7 @@ namespace WageCalculator.Models
                 };
 
                 _persons.Add(person);
+                filterData.PersonNames.Add(person.PersonID, person.PersonName);
             }
 
             var date = DateTime.Parse(row["Date"], new CultureInfo("fi"));
@@ -73,6 +99,17 @@ namespace WageCalculator.Models
                 };
 
                 person.WorkingDays.Add(workingDay);
+                var month = workingDay.Date.Month;
+                var year = workingDay.Date.Year;
+                if (filterData.Months.All(o => o != month))
+                {
+                    filterData.Months.Add(month);
+                }
+
+                if (filterData.Years.All(o => o != year))
+                {
+                    filterData.Years.Add(year);
+                }
             }
 
             if ((startHour < endHour) || (startHour == endHour && startMinute < endMinute))
@@ -98,18 +135,24 @@ namespace WageCalculator.Models
             }
         }
 
-        private List<PersonData> CalculateWages(int month)
+        public List<PersonData> CalculateWages(int month, int year, long personId)
         {
             var personDatas = new List<PersonData>();
             var wagePricing = WageCalculatorHelper.GetWagePricing();
-            foreach (var person in _persons)
+            var persons = _persons;
+            if (personId > 0)
             {
-                var monthWorkingDays = person.WorkingDays.Where(o => o.Date.Month == month).ToList();
+                persons = _persons.Where(o => o.PersonID == personId).ToList();
+            }
+
+            foreach (var person in persons)
+            {
+                var filteredWorkingDays = person.WorkingDays.Where(o => o.Date.Month == month && o.Date.Year == year).ToList();
                 personDatas.Add(new PersonData
                 {
                     PersonID = person.PersonID,
                     PersonName = person.PersonName,
-                    MonthlyWage = new MonthlyWage(monthWorkingDays, wagePricing)
+                    IntervalWage = new IntervalWageModel(filteredWorkingDays, wagePricing).CalculateIntervalWage()
                 });
             }
 

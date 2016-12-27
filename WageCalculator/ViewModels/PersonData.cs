@@ -11,6 +11,6 @@ namespace WageCalculator.ViewModels
     {
         public long PersonID { get; set; }
         public string PersonName { get; set; }
-        public MonthlyWage MonthlyWage { get; set; }
+        public IntervalWage IntervalWage { get; set; }
     }
 }

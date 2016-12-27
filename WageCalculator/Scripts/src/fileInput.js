@@ -1,12 +1,6 @@
 ﻿import React from "react";
 
 export default React.createClass({
-componentWillMount: function () {
-   
-},
-componentDidMount: function() {
- 
-},
 render: function () {
     return (
       <div className={this.props.className}>

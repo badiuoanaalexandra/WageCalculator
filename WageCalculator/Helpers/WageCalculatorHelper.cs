@@ -9,12 +9,6 @@ namespace WageCalculator.Helpers
 {
     public static class WageCalculatorHelper
     {
-        public static MonthlyWage CalculateMonthlyWage(Person person, int month, WagePricing wagePricing)
-        {
-            var workingDays = person.WorkingDays.Where(d => d.Date.Month == month).ToList();
-            return new MonthlyWage(workingDays, wagePricing);
-        }
-
         public static WagePricing GetWagePricing()
         {
             return new WagePricing

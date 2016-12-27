@@ -1,13 +1,12 @@
 ﻿import React from "react";
-import Person from "./person";
+import moment from "moment";
 
 export default React.createClass({
+
 render: function() {
-    var persons = this.props.data.map(function(person) {
-        return (
-           <Person key={person.PersonID} person={person} />
-        );
-    });
+    getMonthsArray:function() {
+        
+    },
     return (
         <div className="person-list">
             <div className="table-titles">

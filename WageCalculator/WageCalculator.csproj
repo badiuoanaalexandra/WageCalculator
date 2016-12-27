@@ -283,7 +283,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\IntervalWageModel.cs" />
+    <Compile Include="Models\DailyWageModel.cs" />
     <Compile Include="Models\WageCalculatorModel.cs" />
+    <Compile Include="ViewModels\FilterData.cs" />
     <Compile Include="ViewModels\PersonData.cs" />
     <Compile Include="ViewModels\DailyWage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -292,7 +295,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\MonthlyWage.cs" />
+    <Compile Include="ViewModels\IntervalWage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\fireworks.jpg" />
@@ -300,9 +303,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\sass\config.rb" />
     <Content Include="Content\sass\Gemfile" />
     <Content Include="Content\sass\Gemfile.lock" />
@@ -326,9 +326,10 @@
     <Content Include="Scripts\jQuery\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jQuery\jquery-ui.min.js" />
     <Content Include="Scripts\src\app.js" />
+    <Content Include="Scripts\src\filterData.js" />
     <Content Include="Scripts\src\workingShift.js" />
     <Content Include="Scripts\src\dailyWage.js" />
-    <Content Include="Scripts\src\monthlyWage.js" />
+    <Content Include="Scripts\src\intervalWage.js" />
     <Content Include="Scripts\src\dailyWageList.js" />
     <Content Include="Scripts\src\personList.js" />
     <Content Include="Scripts\src\person.js" />

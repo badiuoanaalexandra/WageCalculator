@@ -1,23 +1,23 @@
 ﻿import React from "react";
 import ReactDOM from "react-dom";
-import MonthlyWage from "./monthlyWage";
+import IntervalWage from "./intervalWage";
 
 export default React.createClass({
-    showMonthlyWage:function() {
-        if (this.refs.monthlyWage.innerHTML === "") {
+    showIntervalWage:function() {
+        if (this.refs.intervalWage.innerHTML === "") {
             ReactDOM.render(
-                <MonthlyWage monthlyWage={this.props.person.MonthlyWage} />,
-                this.refs.monthlyWage
+                <IntervalWage intervalWage={this.props.person.IntervalWage} />,
+                this.refs.intervalWage
             );
         } else {
-            this.refs.monthlyWage.style.display = "block";
+            this.refs.intervalWage.style.display = "block";
         }
 
         this.refs.showDetails.style.display = "none";
         this.refs.hideDetails.style.display = "block";
     },
-   hideMonthlyWage:function() {
-        this.refs.monthlyWage.style.display = "none";
+   hideIntervalWage:function() {
+       this.refs.intervalWage.style.display = "none";
         this.refs.showDetails.style.display = "block";
         this.refs.hideDetails.style.display = "none";
     },
@@ -25,18 +25,18 @@ export default React.createClass({
         return (
     <div className="person">
             <div className="table">
-                <div className="name">
+                <div>
                     {this.props.person.PersonName}
                 </div>
-                 <div className="name">
-                    {this.props.person.MonthlyWage.TotalMonthlyWage} $
+                 <div>
+                    {this.props.person.IntervalWage.TotalWage} $
                 </div>
                 <div>
-                    <a ref="showDetails" onClick={this.showMonthlyWage}>View details</a>
-                    <a ref="hideDetails" style={{ display: "none" }} onClick={this.hideMonthlyWage}>Hide details</a>
+                    <a ref="showDetails" onClick={this.showIntervalWage}>View details</a>
+                    <a ref="hideDetails" style={{ display: "none" }} onClick={this.hideIntervalWage}>Hide details</a>
                 </div>
             </div>
-    <div ref="monthlyWage"></div>
+    <div ref="intervalWage"></div>
      </div>
         );
     }
