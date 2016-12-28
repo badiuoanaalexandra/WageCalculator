@@ -11,6 +11,10 @@ namespace WageCalculator.Helpers
     {
         public static List<Person> Persons { get; set; }
 
+        /// <summary>
+        /// This can change and the program will still calculate wages successfully
+        /// </summary>
+        /// <returns></returns>
         public static WagePricing GetWagePricing()
         {
             return new WagePricing
@@ -23,21 +27,21 @@ namespace WageCalculator.Helpers
                     StartHour = 18,
                     EndHour = 6
                 },
-                OvertimePricings = new List<OvertimePricing>()
+                OvertimeCompensationPlans = new List<OvertimeCompensationPlan>()
                 {
-                    new OvertimePricing
+                    new OvertimeCompensationPlan
                     {
                         HourTimeSpan = 2,
                         ApplyOrder = 1,
                         Percentage = 0.25M
                     },
-                     new OvertimePricing
+                     new OvertimeCompensationPlan
                     {
                         HourTimeSpan = 2,
                         ApplyOrder = 2,
                         Percentage = 0.5M
                     },
-                    new OvertimePricing
+                    new OvertimeCompensationPlan
                     {
                         // 24 - 8 - 2 - 2
                         HourTimeSpan = 12,
@@ -46,17 +50,6 @@ namespace WageCalculator.Helpers
                     },
                 }
             };
-        }
-
-        public static int CalculateShift(int startHour, int endHour)
-        {
-            // in case the time goes until next morning: example : 18 -> 06
-            if (startHour > endHour)
-            {
-                return (24 - startHour) + endHour;
-            }
-            // in case the time ends in the samae day: example 18-24
-            return endHour - startHour;
         }
     }
 }

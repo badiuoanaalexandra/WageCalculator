@@ -6,7 +6,10 @@ using System.Web;
 
 namespace WageCalculator.Entities
 {
-    public class OvertimePricing
+    /// <summary>
+    /// Overtime compensation plan
+    /// </summary>
+    public class OvertimeCompensationPlan
     {
         public int ApplyOrder { get; set; }
         public decimal Percentage { get; set; }

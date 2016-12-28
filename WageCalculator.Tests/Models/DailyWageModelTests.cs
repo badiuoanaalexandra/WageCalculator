@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WageCalculator.Entities;
 using WageCalculator.Helpers;
 using WageCalculator.Models;
+using WageCalculator.Tests.Helpers;
 using WageCalculator.ViewModels;
 
 namespace WageCalculator.Tests.Models
@@ -76,7 +77,7 @@ namespace WageCalculator.Tests.Models
 
             var dailyWage = new DailyWageModel(workingDay, wagePricing).CalculateDailyWage();
 
-            Assert.AreEqual( (3 + 3+ 1.75M) * wagePricing.BasicHourlyWage, dailyWage.NormalHoursWage);
+            Assert.AreEqual(Math.Round((3 + 3+ 1.75M) * wagePricing.BasicHourlyWage, 2, MidpointRounding.AwayFromZero), dailyWage.NormalHoursWage);
             Assert.AreEqual((3 + 3 + 1.75M), dailyWage.WorkingHours);
         }
 
@@ -160,13 +161,17 @@ namespace WageCalculator.Tests.Models
                 }
             };
 
+            var workingHours = TestsHelper.CalculateShift(wagePricing.EveningPricing.StartHour + 4, wagePricing.EveningPricing.EndHour + 1);
+            var eveningHours = workingHours - 1;
+            var overtimeHours = workingHours - wagePricing.BasicDayHours;
+
             var dailyWage = new DailyWageModel(workingDay, wagePricing).CalculateDailyWage();
-            Assert.AreEqual(9 * wagePricing.BasicHourlyWage, dailyWage.NormalHoursWage);
-            Assert.AreEqual(9, dailyWage.WorkingHours);
-            Assert.AreEqual(8 * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
-            Assert.AreEqual(8, dailyWage.EveningHours);
-            Assert.AreEqual(1, dailyWage.OvertimeHours);
-            Assert.AreEqual(1*wagePricing.BasicHourlyWage*wagePricing.OvertimePricings[0].Percentage, dailyWage.OvertimeCompensation);
+            Assert.AreEqual(workingHours * wagePricing.BasicHourlyWage, dailyWage.NormalHoursWage);
+            Assert.AreEqual(workingHours, dailyWage.WorkingHours);
+            Assert.AreEqual(eveningHours * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
+            Assert.AreEqual(eveningHours, dailyWage.EveningHours);
+            Assert.AreEqual(overtimeHours, dailyWage.OvertimeHours);
+            Assert.AreEqual(Math.Round(TestsHelper.CalculateOvertime(wagePricing, overtimeHours), 2, MidpointRounding.AwayFromZero), dailyWage.OvertimeCompensation);
         }
 
         /// <summary>
@@ -190,12 +195,15 @@ namespace WageCalculator.Tests.Models
                 }
             };
 
+            var workingHours = TestsHelper.CalculateShift(wagePricing.EveningPricing.StartHour - 1, wagePricing.EveningPricing.EndHour + 1);
+            var overtimeHours = workingHours - wagePricing.BasicDayHours;
             var dailyWage = new DailyWageModel(workingDay, wagePricing).CalculateDailyWage();
-            Assert.AreEqual(14 * wagePricing.BasicHourlyWage, dailyWage.NormalHoursWage);
-            Assert.AreEqual(14, dailyWage.WorkingHours);
-            Assert.AreEqual(12 * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
-            Assert.AreEqual(12, dailyWage.EveningHours);
-            Assert.AreEqual(1.875M + 3.75M + 7.5M, dailyWage.OvertimeCompensation);
+            Assert.AreEqual(workingHours * wagePricing.BasicHourlyWage, dailyWage.NormalHoursWage);
+            Assert.AreEqual(workingHours, dailyWage.WorkingHours);
+            Assert.AreEqual((workingHours-2) * wagePricing.EveningPricing.Compensation, dailyWage.EveningCompensation);
+            Assert.AreEqual((workingHours - 2), dailyWage.EveningHours);
+            Assert.AreEqual(overtimeHours, dailyWage.OvertimeHours);
+            Assert.AreEqual(Math.Round(TestsHelper.CalculateOvertime(wagePricing, overtimeHours), 2, MidpointRounding.AwayFromZero), dailyWage.OvertimeCompensation);
         }
 
         /// <summary>
@@ -205,7 +213,7 @@ namespace WageCalculator.Tests.Models
         public void Test_DailyWage_Multiple_Shifts_And_Overtime()
         {
             var wagePricing = WageCalculatorHelper.GetWagePricing();
-            //one normal day
+            //one long day
             var date = DateTime.Now.Date.AddDays(-3);
             var workingDay = new WorkingDay
             {
@@ -250,13 +258,19 @@ namespace WageCalculator.Tests.Models
                 }
             };
 
+            var workingHours = 1 + 3 + 2+ 3 + 0.5M + 
+                               TestsHelper.CalculateShift(wagePricing.EveningPricing.StartHour + 4, wagePricing.EveningPricing.EndHour - 3);
+            var eveningHours = 2 + 2 + 0.5M +
+                               TestsHelper.CalculateShift(wagePricing.EveningPricing.StartHour + 4, wagePricing.EveningPricing.EndHour - 3);
+            var overTimeHours = workingHours - wagePricing.BasicDayHours;
+
             var dailyWage = new DailyWageModel(workingDay, wagePricing).CalculateDailyWage();
-            Assert.AreEqual(Math.Round((1+3+2+3+0.5M+5) * wagePricing.BasicHourlyWage, 2, MidpointRounding.AwayFromZero), dailyWage.NormalHoursWage);
-            Assert.AreEqual((1+3 + 2 + 3 + 0.5M + 5), dailyWage.WorkingHours);
-            Assert.AreEqual(Math.Round(9.5M * wagePricing.EveningPricing.Compensation, 2, MidpointRounding.AwayFromZero), dailyWage.EveningCompensation);
-            Assert.AreEqual(9.5M, dailyWage.EveningHours);
-            Assert.AreEqual(1.875M + 3.75M + 9.375M, dailyWage.OvertimeCompensation);
-            Assert.AreEqual(6.5M, dailyWage.OvertimeHours);
+            Assert.AreEqual(Math.Round(workingHours * wagePricing.BasicHourlyWage, 2, MidpointRounding.AwayFromZero), dailyWage.NormalHoursWage);
+            Assert.AreEqual(workingHours, dailyWage.WorkingHours);
+            Assert.AreEqual(Math.Round(eveningHours * wagePricing.EveningPricing.Compensation, 2, MidpointRounding.AwayFromZero), dailyWage.EveningCompensation);
+            Assert.AreEqual(eveningHours, dailyWage.EveningHours);
+            Assert.AreEqual(TestsHelper.CalculateOvertime(wagePricing, overTimeHours), dailyWage.OvertimeCompensation);
+            Assert.AreEqual(overTimeHours, dailyWage.OvertimeHours);
         }
     }
 }

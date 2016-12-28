@@ -6,6 +6,9 @@ using WageCalculator.Entities;
 
 namespace WageCalculator.ViewModels
 {
+    /// <summary>
+    /// Vizualize the wage calculations in a certain interval of time
+    /// </summary>
     public class IntervalWage
     {
         public decimal TotalWage { get; set; }

@@ -8,6 +8,8 @@
     color:$primary;
     height:2.5em;
     line-height:2.5em;
+    text-transform:uppercase;
+    min-width:10em;
 }
 .bg-image {
     position: absolute;
@@ -24,6 +26,8 @@
     padding-top: 2em;
     position: relative;
     z-index: 2;
+    width:95%;
+    margin:0 auto;
 }
 
 .table {
@@ -38,15 +42,26 @@
         vertical-align: middle;
         padding: 1em;
         text-align: right;
-        width:20%;
+        @include breakpoint($desktop){
+            width:20%;
+       }
+        @include breakpoint($desktop-max){
+                     width:25%;
+            }
     }
 }
 
 .table-titles {
     width:100%;
+    text-transform:uppercase;
     > div {
         padding: 1em;
-        width: 20%;
+             @include breakpoint($desktop){
+            width:20%;
+       }
+        @include breakpoint($desktop-max){
+                     width:25%;
+            }
         display: inline-block;
         text-align: right;
     }
@@ -70,6 +85,7 @@
         display: inline-block;
         vertical-align: bottom;
         padding-right:2em;
+        margin-top:0.5em;
     }
 }
 
@@ -81,3 +97,8 @@ select{
     font-weight:600;
     color:$text;
 }
+
+.error{
+    color:red;
+}
+

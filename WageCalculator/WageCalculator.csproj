@@ -275,7 +275,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\EveningPricing.cs" />
-    <Compile Include="Entities\OvertimePricing.cs" />
+    <Compile Include="Entities\OvertimeCompensationPlan.cs" />
     <Compile Include="Entities\WagePricing.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\WorkingShift.cs" />
@@ -323,12 +323,9 @@
     <Content Include="Content\sass\sass\common\_monthly-wage.scss" />
     <Content Include="Content\sass\sass\common\_daily-wage.scss" />
     <Content Include="Content\sass\sass\common\_background-image-text.scss" />
-    <Content Include="ApplicationInsights.config" />
     <Content Include="Content\sass\sass\common\_inputfile.scss" />
     <None Include="Properties\PublishProfiles\WageCalculator - Web Deploy.pubxml" />
     <Content Include="Scripts\dist\app.bundle.js" />
-    <Content Include="Scripts\jQuery\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jQuery\jquery-ui.min.js" />
     <Content Include="Scripts\src\app.js" />
     <Content Include="Scripts\src\filterData.js" />
     <Content Include="Scripts\src\workingShift.js" />

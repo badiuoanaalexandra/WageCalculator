@@ -9,6 +9,9 @@
     table {
         width: 100%;
         text-align: center;
+        th{
+            text-transform:uppercase;
+        }
 
         tbody, thead {
             tr {

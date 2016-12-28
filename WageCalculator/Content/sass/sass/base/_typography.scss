@@ -32,12 +32,12 @@ body{
 
     @include breakpoint($tab) {
         @include breakpoint($desktop-normal-max) {
-            font-size:0.95em;
+            font-size:0.9em;
         }
     }
 
      @include breakpoint($tab-max) {
-          font-size:0.85em;
+          font-size:0.6em;
          }
 
 }
@@ -67,12 +67,13 @@ h1,h2{
     }
 
        @include breakpoint($tab-max){
-                   font-size:2.1em;
-    margin:0.4em 0 0.8em 0;
+        font-size:2.1em;
+        margin:0.4em 0 0.8em 0;
     }
 
     line-height:100%;
     text-align:center;
+    text-transform:uppercase;
 }
 
 h3{

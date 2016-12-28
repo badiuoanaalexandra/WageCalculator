@@ -21,7 +21,7 @@ namespace WageCalculator.Models
         }
 
         /// <summary>
-        /// Wage pricing based on which the calculation are done
+        /// Wage compensationPlan based on which the calculation are done
         /// </summary>
         public WagePricing WagePricing { get; }
         /// <summary>
@@ -90,9 +90,9 @@ namespace WageCalculator.Models
             }
 
             var overtimeHours = overtimeCompensation.Hours;
-            foreach (var overtimePricing in WagePricing.OvertimePricings.OrderBy(o => o.ApplyOrder))
+            foreach (var overtimePricing in WagePricing.OvertimeCompensationPlans.OrderBy(o => o.ApplyOrder))
             {
-                overtimeCompensation.Amount += CalculatePricingOvertime(overtimePricing, ref overtimeHours);
+                overtimeCompensation.Amount += CalculateCompensationPlanOvertime(overtimePricing, ref overtimeHours);
                 if (overtimeHours < 0)
                 {
                     return overtimeCompensation;
@@ -105,19 +105,19 @@ namespace WageCalculator.Models
         /// <summary>
         /// Calculates compensation for one overtime plan (for example first 2 hours)
         /// </summary>
-        /// <param name="pricing">OvertimePricing plan</param>
+        /// <param name="compensationPlan">OvertimeCompensationPlan plan</param>
         /// <param name="workingHours">workingHours</param>
-        /// <returns>Overtime compensation based on overtime pricing plan (decimal)</returns>
-        private decimal CalculatePricingOvertime(OvertimePricing pricing, ref decimal workingHours)
+        /// <returns>Overtime compensation based on overtime compensationPlan plan (decimal)</returns>
+        private decimal CalculateCompensationPlanOvertime(OvertimeCompensationPlan compensationPlan, ref decimal workingHours)
         {
             var originalWorkingHours = workingHours;
-            workingHours = workingHours - pricing.HourTimeSpan;
+            workingHours = workingHours - compensationPlan.HourTimeSpan;
             if (workingHours > 0)
             {
-                return WagePricing.BasicHourlyWage * pricing.Percentage * pricing.HourTimeSpan;
+                return WagePricing.BasicHourlyWage * compensationPlan.Percentage * compensationPlan.HourTimeSpan;
             }
 
-            return WagePricing.BasicHourlyWage * pricing.Percentage * originalWorkingHours;
+            return WagePricing.BasicHourlyWage * compensationPlan.Percentage * originalWorkingHours;
         }
 
         /// <summary>

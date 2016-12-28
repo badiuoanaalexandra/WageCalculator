@@ -2,7 +2,12 @@
     margin-top: 1em;
     background: rgba($table-background, 0.8);
     border-radius: 1em;
-    padding: 1em 2em;
+    @include breakpoint($tab-wide){
+            padding: 1em 2em;
+    }
+    @include breakpoint($tab-wide-max){
+            padding: 1em 0.5em;
+    }
     color: $text;
 
     .person:last-child {
@@ -20,10 +25,6 @@
             > div:first-child {
                 font-weight: 800;
                 font-size:1.1em;
-            }
-
-            > div {
-                width: 20%;
             }
         }
     }

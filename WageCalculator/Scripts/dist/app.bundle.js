@@ -8267,7 +8267,7 @@
 	            this.setState({ data: [], filterData: null });
 	            return;
 	        }
-
+	        this.refs.error.style.display = "none";
 	        this.refs.file.refs.text.innerHTML = this.refs.file.refs.input.files[0].name;
 	        var reactMain = this;
 	        var xhr = new XMLHttpRequest();
@@ -8277,7 +8277,12 @@
 	        xhr.send(fd);
 	        xhr.addEventListener("load", function (event) {
 	            var filterData = JSON.parse(event.target.response);
-	            reactMain.setState({ data: [], filterData: filterData });
+	            if (filterData.Months) {
+	                reactMain.setState({ data: [], filterData: filterData });
+	            } else {
+	                reactMain.refs.error.innerHTML = "The file you uploaded is not valid. Please upload a different file";
+	                reactMain.refs.error.style.display = "block";
+	            }
 	        }, false);
 	    },
 	    render: function render() {
@@ -8290,6 +8295,7 @@
 	                "Hello there and welcome to the wage calculator!"
 	            ),
 	            _react2.default.createElement(_fileInput2.default, { className: "file-upload", ref: "file", id: "fileinput", onChange: this.processFile }),
+	            _react2.default.createElement("div", { ref: "error", className: "error", style: { display: "none" } }),
 	            _react2.default.createElement(_filterData2.default, { ref: "filter", filterData: this.state.filterData, calculateFunction: this.calculateWage }),
 	            _react2.default.createElement(_personList2.default, { data: this.state.data }),
 	            _react2.default.createElement(

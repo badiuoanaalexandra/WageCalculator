@@ -7,6 +7,9 @@ using WageCalculator.Helpers;
 
 namespace WageCalculator.ViewModels
 {
+    /// <summary>
+    /// Visualize the daily wage calculations
+    /// </summary>
     public class DailyWage
     {
         public decimal TotalWage => NormalHoursWage + EveningCompensation + OvertimeCompensation;

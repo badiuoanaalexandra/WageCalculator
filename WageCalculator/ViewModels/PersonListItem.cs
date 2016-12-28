@@ -7,6 +7,9 @@ using WageCalculator.Helpers;
 
 namespace WageCalculator.ViewModels
 {
+    /// <summary>
+    /// Used for creating a selectlist
+    /// </summary>
     public class PersonListItem
     {
         public long PersonID { get; set; }

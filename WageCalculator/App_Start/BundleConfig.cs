@@ -11,8 +11,6 @@ namespace WageCalculator
         {
             //js bundles
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                          //"~/Scripts/jQuery/jquery-3.1.1.min.js",
-                          //"~/Scripts/jQuery/jquery-ui.min.js",
                           "~/Scripts/dist/app.bundle.js"));
 
             //css bundles

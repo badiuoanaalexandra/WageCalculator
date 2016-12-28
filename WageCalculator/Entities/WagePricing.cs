@@ -11,7 +11,6 @@ namespace WageCalculator.Entities
         public decimal BasicHourlyWage { get; set; }
         public int BasicDayHours { get; set; }
         public EveningPricing EveningPricing { get; set; }
-
-        public List<OvertimePricing> OvertimePricings { get; set; }
+        public List<OvertimeCompensationPlan> OvertimeCompensationPlans { get; set; }
     }
 }

@@ -7,6 +7,9 @@ using WageCalculator.Helpers;
 
 namespace WageCalculator.ViewModels
 {
+    /// <summary>
+    /// Visualize the wage calculations for a person
+    /// </summary>
     public class PersonData
     {
         public long PersonID { get; set; }
