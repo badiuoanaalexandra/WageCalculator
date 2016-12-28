@@ -12,10 +12,9 @@ export default React.createClass({
                 <IntervalWage intervalWage={this.props.person.IntervalWage} />,
                 this.refs.intervalWage
             );
-        } else {
-            this.refs.intervalWage.style.display = "block";
-        }
+        } 
 
+        this.refs.intervalWage.style.display = "block";
         this.refs.showDetails.style.display = "none";
         this.refs.hideDetails.style.display = "block";
     },

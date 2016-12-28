@@ -23337,10 +23337,9 @@
 	    showIntervalWage: function showIntervalWage() {
 	        if (this.refs.intervalWage.innerHTML === "") {
 	            _reactDom2.default.render(_react2.default.createElement(_intervalWage2.default, { intervalWage: this.props.person.IntervalWage }), this.refs.intervalWage);
-	        } else {
-	            this.refs.intervalWage.style.display = "block";
 	        }
 
+	        this.refs.intervalWage.style.display = "block";
 	        this.refs.showDetails.style.display = "none";
 	        this.refs.hideDetails.style.display = "block";
 	    },
