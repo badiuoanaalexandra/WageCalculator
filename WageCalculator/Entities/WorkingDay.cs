@@ -16,7 +16,6 @@ namespace WageCalculator.Entities
             WorkingShifts = new List<WorkingShift>();
         }
 
-        public long WorkingDayId { get; set; }
         public DateTime Date { get; set; }
 
         public List<WorkingShift> WorkingShifts { get; set; }

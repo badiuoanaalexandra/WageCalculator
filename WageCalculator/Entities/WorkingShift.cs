@@ -11,7 +11,6 @@ namespace WageCalculator.Entities
     /// </summary>
     public class WorkingShift
     {
-        public long WorkingShiftId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
     }
