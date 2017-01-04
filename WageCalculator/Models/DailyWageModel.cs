@@ -21,11 +21,11 @@ namespace WageCalculator.Models
         }
 
         /// <summary>
-        /// Wage compensationPlan based on which the calculation are done
+        /// Wage pricing based on which the calculations are done
         /// </summary>
         public WagePricing WagePricing { get; }
         /// <summary>
-        /// Working day based on which the calculation are done
+        /// Working day based on which the calculations are done
         /// </summary>
         public WorkingDay WorkingDay { get; }
 
