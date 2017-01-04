@@ -299,6 +299,7 @@
     <Compile Include="ViewModels\IntervalWage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\loading.svg" />
     <Content Include="Content\Images\fireworks.jpg" />
     <Content Include="Content\Images\inputfile.svg" />
     <Content Include="Content\stylesheets\styles.css" />

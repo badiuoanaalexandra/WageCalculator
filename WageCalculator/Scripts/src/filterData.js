@@ -81,8 +81,10 @@ export default React.createClass({
                 </select>
             </div>
                 <div className="button-wrapper">
-                <a className="button" onClick={this.props.calculateFunction}>Calculate</a>
+                    <a className="button" onClick={this.props.calculateFunction}>Calculate</a>
+                    <img ref="loadingFilter" src="/Content/Images/loading.svg"/>
                 </div>
+               
           </div>  
         );
         }
